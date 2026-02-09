@@ -1,11 +1,17 @@
 #!/usr/bin/env Rscript
-# Entrypoint: run Case 4 (hub networks)
-# Writes: results/case4_hub*.rds
+# Entrypoint for Case 4 (hub network)
 
-source("R/utils.R")
-source("R/generators.R")
-source("R/methods.R")
-source("R/metrics.R")
-source("R/tuning.R")
+options(stringsAsFactors = FALSE)
 
-cat("TODO: implement pipeline for Case 4 hub\n")
+dir.create("results", showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path("results", "logs"), showWarnings = FALSE, recursive = TRUE)
+
+set.seed(250)
+
+sink(file.path("results", "logs", "sessionInfo_case4_hub.txt"))
+print(sessionInfo())
+sink()
+
+source(file.path("scripts", "impl_case4_hub.R"))
+
+cat("Done.\n")
