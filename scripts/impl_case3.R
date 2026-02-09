@@ -172,13 +172,13 @@ run_case3_one <- function(p, sp, lambda_grid, n = 100, seed = 250) {
 lambda_grid_quick <- seq(0.2, 1.5, length.out = 10)
 
 Case3_p100_Sp0.5 <- run_case3_one(p = 100, sp = 0.5, lambda_grid = lambda_grid_quick, n = 100)
-#Case3_p200_Sp0.5 <- run_case3_one(p = 200, sp = 0.5, lambda_grid = lambda_grid_quick, n = 100)
-# Case3_p500_Sp0.5 <- run_case3_one(p = 500, sp = 0.5, lambda_grid = lambda_grid_quick, n = 100)
+Case3_p200_Sp0.5 <- run_case3_one(p = 200, sp = 0.5, lambda_grid = lambda_grid_quick, n = 100)
+Case3_p500_Sp0.5 <- run_case3_one(p = 500, sp = 0.5, lambda_grid = lambda_grid_quick, n = 100)
 
 save.image(file = file.path("results", "Results3_0.5.RData"))
 
 Case3_p100_Sp0.99 <- run_case3_one(p = 100, sp = 0.99, lambda_grid = lambda_grid_quick, n = 100)
-#Case3_p200_Sp0.99 <- run_case3_one(p = 200, sp = 0.99, lambda_grid = lambda_grid_quick, n = 100)
-# Case3_p500_Sp0.99 <- run_case3_one(p = 500, sp = 0.99, lambda_grid = lambda_grid_quick, n = 100)
+Case3_p200_Sp0.99 <- run_case3_one(p = 200, sp = 0.99, lambda_grid = lambda_grid_quick, n = 100)
+Case3_p500_Sp0.99 <- run_case3_one(p = 500, sp = 0.99, lambda_grid = lambda_grid_quick, n = 100)
 
 save.image(file = file.path("results", "Results3_0.99.RData"))

@@ -145,11 +145,11 @@ main_function <- function(p, case_id, lambda_grid = seq(0.1, 1.5, length.out = 2
 }
 
 Case1_p100 <- main_function(p = 100, case_id = 1)
-#Case1_p200 <- main_function(p = 200, case_id = 1)
+Case1_p200 <- main_function(p = 200, case_id = 1)
 #Case1_p500 <- main_function(p = 500, case_id = 1)
 
 Case2_p100 <- main_function(p = 100, case_id = 2)
-#Case2_p200 <- main_function(p = 200, case_id = 2)
+Case2_p200 <- main_function(p = 200, case_id = 2)
 #Case2_p500 <- main_function(p = 500, case_id = 2)
 
 save.image(file = file.path("results", "Results1and2.RData"))
