@@ -1,5 +1,4 @@
 # Data-generating mechanisms (DGMs) for precision matrices and data
-# TODO: implement from your Simul scripts with clean function interfaces.
 
 #' Generate banded precision matrix (Case 1)
 generate_theta_banded <- function(p, off_diag = 0.5, diag = 1) {
