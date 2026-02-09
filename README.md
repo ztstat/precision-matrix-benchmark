@@ -63,9 +63,9 @@ Across all simulation cases, the following three estimators are evaluated:
 
 - **dpglasso (custom implementation)**  
   A self-implemented dpglasso estimator based on coordinate-wise updates of the
-  precision matrix. This implementation follows the dpglasso formulation but is
-  written explicitly in this repository rather than calling the `dpglasso`
-  package.
+  precision matrix. This implementation follows the dpglasso formulation and is
+  written explicitly in this repository due to a known issue in the
+  `dpglasso` package.
 
 - **QUIC**  
   Sparse inverse covariance estimation using the QUIC algorithm, implemented via
