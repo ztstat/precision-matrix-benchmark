@@ -169,6 +169,6 @@ and applied data science execution.
 
 This final project was completed jointly with **Mingshuo Liu**, who primarily
 contributed to literature review and experimental design.  
-The GitHub repository, code implementation, and reproducible benchmarking
+The code implementation and reproducible benchmarking
 pipeline were developed, refactored, and uploaded by **Zijie Tian**.
 
