@@ -167,6 +167,8 @@ and applied data science execution.
 
 ## Acknowledgement
 
-This final project was completed jointly with **Mingshuo Liu**.  
-The GitHub repository and code organization were curated, refactored, and
-uploaded by **Zijie Tian**.
+This final project was completed jointly with **Mingshuo Liu**, who primarily
+contributed to literature review and experimental design.  
+The GitHub repository, code implementation, and reproducible benchmarking
+pipeline were developed, refactored, and uploaded by **Zijie Tian**.
+
