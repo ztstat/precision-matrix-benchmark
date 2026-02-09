@@ -3,7 +3,7 @@
 This repository provides a reproducible, industry-facing benchmarking pipeline
 for precision matrix estimation under multiple structural regimes. The project
 is designed as a work sample for **data science, biostatistics, and applied
-statistical research roles**, with an emphasis on **simulation design,
+statistical roles**, with an emphasis on **simulation design,
 statistical evaluation, and engineering trade-offs**, rather than methodological
 novelty.
 
