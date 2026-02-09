@@ -9,7 +9,7 @@ novelty.
 
 The codebase demonstrates how to design, implement, debug, and deliver a
 statistical simulation pipeline that is robust, interpretable, and directly
-usable in **industry settings such as pharma, biotech, and applied research**.
+usable in **industry settings**.
 
 
 ## Overview
