@@ -1,11 +1,17 @@
 #!/usr/bin/env Rscript
-# Entrypoint: run Case 1 (banded) + Case 2 (dense)
-# Writes: results/case12_*.rds
+# Entrypoint for Case 1 (banded) + Case 2 (dense)
 
-source("R/utils.R")
-source("R/generators.R")
-source("R/methods.R")
-source("R/metrics.R")
-source("R/tuning.R")
+options(stringsAsFactors = FALSE)
 
-cat("TODO: implement pipeline for Case 1 & 2\n")
+dir.create("results", showWarnings = FALSE, recursive = TRUE)
+dir.create(file.path("results", "logs"), showWarnings = FALSE, recursive = TRUE)
+
+set.seed(250)
+
+sink(file.path("results", "logs", "sessionInfo_case12.txt"))
+print(sessionInfo())
+sink()
+
+source(file.path("scripts", "impl_case12.R"))
+
+cat("Done.\n")
