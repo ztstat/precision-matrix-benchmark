@@ -11,7 +11,6 @@ renv/staging/
 
 # Results / figures (generated)
 results/
-figures/
 
 # Data (if any real data is added later)
 data/
