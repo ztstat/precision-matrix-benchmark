@@ -21,9 +21,11 @@ get_obj <- function(name) {
   if (exists(name, envir = .GlobalEnv, inherits = FALSE)) get(name, envir = .GlobalEnv) else NULL
 }
 
-plot_metric <- function(obj, metric, label_suffix, x) {
+plot_metric <- function(obj, metric, label_suffix) {
   if (is.null(obj) || is.null(obj[[metric]])) return(invisible(NULL))
+  if (is.null(obj$lambda)) return(invisible(NULL))
   
+  x <- obj$lambda
   methods <- names(obj[[metric]])
   if (is.null(methods) || length(methods) == 0) return(invisible(NULL))
   
@@ -45,95 +47,43 @@ plot_metric <- function(obj, metric, label_suffix, x) {
   invisible(NULL)
 }
 
-plot_bundle <- function(obj, label, x) {
+plot_bundle <- function(obj, label) {
   for (m in c("BIC", "TPR", "FPR", "Sparsity_ratio", "Fnorm", "Time")) {
-    plot_metric(obj, m, label, x = x)
+    plot_metric(obj, m, label)
   }
 }
 
-detect_xgrid <- function(obj) {
-  # Default quick grid
-  x <- seq(0.2, 1.5, length.out = 10)
-  
-  # If any metric vector length differs, adapt x to match
-  pick <- NULL
-  for (m in c("BIC","TPR","FPR","Sparsity_ratio","Fnorm","Time")) {
-    if (!is.null(obj[[m]]) && length(obj[[m]]) > 0) {
-      v <- obj[[m]][[1]]
-      if (!is.null(v) && length(v) > 0) {
-        pick <- length(v)
-        break
-      }
-    }
-  }
-  if (!is.null(pick) && pick != length(x)) {
-    x <- seq(0.1, 2, length.out = pick)
-  }
-  x
-}
-
-# -----------------------------
 # Case 1 & 2
-# -----------------------------
 if (file.exists(file.path("results", "Results1and2.RData"))) {
   load_or_stop(file.path("results", "Results1and2.RData"))
-  
-  candidates <- c(
-    "Case1_p100","Case1_p200","Case1_p500",
-    "Case2_p100","Case2_p200","Case2_p500"
-  )
-  
-  for (nm in candidates) {
+  for (nm in c("Case1_p100","Case1_p200","Case1_p500","Case2_p100","Case2_p200","Case2_p500")) {
     obj <- get_obj(nm)
-    if (is.null(obj)) next
-    x <- detect_xgrid(obj)
-    plot_bundle(obj, label = paste0("_", nm), x = x)
+    if (!is.null(obj)) plot_bundle(obj, paste0("_", nm))
   }
 }
 
-# -----------------------------
 # Case 3
-# -----------------------------
-if (file.exists(file.path("results", "Results3_0.5.RData"))) {
-  load_or_stop(file.path("results", "Results3_0.5.RData"))
-}
-if (file.exists(file.path("results", "Results3_0.99.RData"))) {
-  load_or_stop(file.path("results", "Results3_0.99.RData"))
-}
-
-case3_candidates <- c(
-  "Case3_p=100_Sp=0.5",
-  "Case3_p=200_Sp=0.5",
-  "Case3_p=500_Sp=0.5",
-  "Case3_p=100_Sp=0.99",
-  "Case3_p=200_Sp=0.99",
-  "Case3_p=500_Sp=0.99"
-)
-
-for (nm in case3_candidates) {
-  obj <- get_obj(nm)
-  if (is.null(obj)) next
-  x <- detect_xgrid(obj)
-  plot_bundle(obj, label = paste0("_", gsub("[^A-Za-z0-9_=-]", "", nm)), x = x)
-}
-
-# -----------------------------
-# Case 4
-# -----------------------------
-if (file.exists(file.path("results", "Results_4_hub=0.2.RData"))) {
-  load_or_stop(file.path("results", "Results_4_hub=0.2.RData"))
-  
-  case4_candidates <- c(
-    "Case4_p=100_hub=0.2",
-    "Case4_p=200_hub=0.2",
-    "Case4_p=500_hub=0.2"
-  )
-  
-  for (nm in case4_candidates) {
+if (file.exists(file.path("results", "Results3_sp0.5.RData"))) {
+  load_or_stop(file.path("results", "Results3_sp0.5.RData"))
+  for (nm in c("Case3_p100_sp0_5","Case3_p200_sp0_5","Case3_p500_sp0_5")) {
     obj <- get_obj(nm)
-    if (is.null(obj)) next
-    x <- detect_xgrid(obj)
-    plot_bundle(obj, label = paste0("_", gsub("[^A-Za-z0-9_=-]", "", nm)), x = x)
+    if (!is.null(obj)) plot_bundle(obj, paste0("_", nm))
+  }
+}
+if (file.exists(file.path("results", "Results3_sp0.99.RData"))) {
+  load_or_stop(file.path("results", "Results3_sp0.99.RData"))
+  for (nm in c("Case3_p100_sp0_99","Case3_p200_sp0_99","Case3_p500_sp0_99")) {
+    obj <- get_obj(nm)
+    if (!is.null(obj)) plot_bundle(obj, paste0("_", nm))
+  }
+}
+
+# Case 4
+if (file.exists(file.path("results", "Results4_hub0.2.RData"))) {
+  load_or_stop(file.path("results", "Results4_hub0.2.RData"))
+  for (nm in c("Case4_p100_hub0_2","Case4_p200_hub0_2","Case4_p500_hub0_2")) {
+    obj <- get_obj(nm)
+    if (!is.null(obj)) plot_bundle(obj, paste0("_", nm))
   }
 }
 

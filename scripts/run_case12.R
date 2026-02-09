@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# Entrypoint for Case 1 (banded) + Case 2 (dense)
+# Entrypoint for Case 1 & 2
 
 options(stringsAsFactors = FALSE)
 

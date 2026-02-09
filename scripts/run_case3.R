@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# Entrypoint for Case 3 (random sparse)
+# Entrypoint for Case 3
 
 options(stringsAsFactors = FALSE)
 
