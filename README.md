@@ -3,13 +3,13 @@
 This repository provides a reproducible, industry-facing benchmarking pipeline
 for precision matrix estimation under multiple structural regimes. The project
 is designed as a work sample for **data science, biostatistics, and applied
-statistical roles**, with an emphasis on **simulation design,
+statistical research roles**, with an emphasis on **simulation design,
 statistical evaluation, and engineering trade-offs**, rather than methodological
 novelty.
 
 The codebase demonstrates how to design, implement, debug, and deliver a
 statistical simulation pipeline that is robust, interpretable, and directly
-usable in **industry settings**.
+usable in **industry settings such as pharma, biotech, and applied research**.
 
 
 ## Overview
@@ -22,13 +22,14 @@ modern data science and statistical modeling, with applications including:
 - Exploratory structure discovery
 - Downstream modeling and uncertainty analysis
 
-This repository benchmarks several widely used approaches across controlled
-simulation settings. The focus is **not** on proposing new methods, but on:
+This repository benchmarks several established estimation strategies across
+controlled simulation settings. The focus is **not** on proposing new methods,
+but on:
 
 - Principled simulation design
 - Careful evaluation logic
 - Reproducibility and robustness
-- Computational practicality
+- Computational and numerical practicality
 
 
 ## Key Design Principles
@@ -39,31 +40,42 @@ simulation settings. The focus is **not** on proposing new methods, but on:
 
 2. **Simulation-driven evaluation**  
    Ground-truth precision matrices are explicitly constructed, enabling
-   controlled assessment of recovery accuracy, sparsity, and error metrics.
+   controlled assessment of recovery accuracy, sparsity, and estimation error.
 
 3. **Engineering realism**  
-   Computational cost, numerical stability, and package-level issues are treated
-   as first-class concerns, reflecting real industry workflows.
+   Numerical stability, convergence behavior, and implementation-level issues
+   are treated as first-class concerns, reflecting real applied data science
+   workflows.
 
 4. **Minimal but extensible configuration**  
-   A quick configuration (small lambda grids, moderate dimensions) is used by
+   A quick configuration (small tuning grids, moderate dimensions) is used by
    default for fast reproducibility. Full-scale runs can be enabled with minor
    parameter changes.
 
 
 ## Methods Benchmarked
 
-Across all cases, the following estimators are evaluated:
+Across all simulation cases, the following three estimators are evaluated:
 
-- **glasso** (graphical lasso)
-- **QUIC**-based precision estimation
-- **dpglasso-style** estimation via a QUIC backend
+- **glasso**  
+  Standard graphical lasso with an ℓ₁ penalty, implemented via the
+  `glasso` R package.
 
-**Note:**  
-On some platforms, the `dpglasso` package exhibits a known symmetry-check bug.
-To ensure robustness and reproducibility, dpglasso-style estimation is
-implemented via a QUIC backend in this repository. This reflects practical
-engineering considerations rather than theoretical preference.
+- **dpglasso (custom implementation)**  
+  A self-implemented dpglasso estimator based on coordinate-wise updates of the
+  precision matrix. This implementation follows the dpglasso formulation but is
+  written explicitly in this repository rather than calling the `dpglasso`
+  package.
+
+- **QUIC**  
+  Sparse inverse covariance estimation using the QUIC algorithm, implemented via
+  the `QUIC` R package.
+
+**Implementation note:**  
+The dpglasso estimator is implemented directly in this repository. Additional
+numerical safeguards (e.g. symmetry enforcement, ridge stabilization, and
+finite-value checks) are included to ensure stable execution across simulation
+settings.
 
 
 ## Simulation Cases
@@ -147,14 +159,14 @@ findings, this codebase focuses on:
 - Executable simulation design
 - Reproducible benchmarking
 - Clear separation of concerns
-- Practical handling of numerical and package-level issues
+- Practical handling of numerical and implementation-level issues
 
 Together, the report and this repository illustrate both statistical reasoning
 and applied data science execution.
 
 
-## Note
+## Acknowledgement
 
-This final project was completed jointly with Mingshuo Liu.  
-The GitHub repository and code organization were curated, refactored,
-and uploaded by Zijie Tian.
+This final project was completed jointly with **Mingshuo Liu**.  
+The GitHub repository and code organization were curated, refactored, and
+uploaded by **Zijie Tian**.
